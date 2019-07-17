@@ -57,7 +57,7 @@ var paths = {
 var watchedBrowserify = watchify(browserify({
     basedir: '.',
     debug: true,
-    entries: ['src/main.ts'],
+    entries: ['src/variable.js'],
     cache: {},
     packageCache: {}
 }).plugin(tsify));
@@ -69,6 +69,10 @@ gulp.task("copy-html", function () {
 
 function bundle() {
     return watchedBrowserify
+        .transform('babelify', {
+            presets: ['es2015'],
+            extensions: ['.js','.es6']
+        })
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(buffer())
@@ -102,14 +106,14 @@ watchedBrowserify.on("log", gutil.log);
 //     return browserify({
 //         basedir: '.',
 //         debug: true,
-//         entries: ['src/main.ts'],
+//         entries: ['src/variable.js'],
 //         cache: {},
 //         packageCache: {}
 //     })
 //     .plugin(tsify)
 //     .transform('babelify', {
 //         presets: ['es2015'],
-//         extensions: ['.ts']
+//         extensions: ['.js','.es6']
 //     })
 //     .bundle()
 //     .pipe(source('bundle.js'))
