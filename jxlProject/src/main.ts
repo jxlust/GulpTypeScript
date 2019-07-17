@@ -11,6 +11,7 @@ console.log('1',say('我是say'));
 console.log('2',saySome('我是saysome'));
 
 function innerText(divName:string,name: string){
+    console.log('test...1');
     const PE = document.getElementById(divName);
     PE && (PE.innerText = say(name));
 }
