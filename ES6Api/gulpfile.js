@@ -1,87 +1,79 @@
-//1.typescript的编译配置
-// var gulp = require("gulp");
-// var ts = require("gulp-typescript");
-// var tsProject = ts.createProject("tsconfig.json");
-
-// gulp.task("default", function () {
-//     return tsProject.src()
-//         .pipe(tsProject())
-//         .js.pipe(gulp.dest("dist"));
-// });
-
-//2.合并一个bundle文件 
-// var gulp = require("gulp");
-// var browserify = require("browserify");
-// var source = require('vinyl-source-stream');
-// var watchify = require("watchify");
-// var tsify = require("tsify");
-// var gutil = require("gulp-util");
-// var paths = {
-//     pages: ['html/*.html']
-// };
-
-// gulp.task("copy-html", function () {
-//     return gulp.src(paths.pages)
-//         .pipe(gulp.dest("dist"));
-// });
-
-// gulp.task("default", gulp.series("copy-html",function () {
-//     return browserify({
-//         basedir: '.',
-//         debug: true,
-//         entries: ['src/main.ts'],
-//         cache: {},
-//         packageCache: {}
-//     })
-//     .plugin(tsify)
-//     .bundle()
-//     .pipe(source('bundle.js'))
-//     .pipe(gulp.dest("dist"));
-// }));
-
-//3.监听文件变化和混淆
-var gulp = require("gulp");
-var browserify = require("browserify");
-var source = require('vinyl-source-stream');
-var watchify = require("watchify");
-var tsify = require("tsify");
-var gutil = require("gulp-util");
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var browserSync = require('browser-sync');
+var babel = require('gulp-babel');
+var reload = browserSync.reload;
 //混淆
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps'); //生成的sourcemap文件可以方便调试压缩后的代码
-var buffer = require('vinyl-buffer');
-var paths = {
-    pages: ['html/*.html']
-};
+var buffer = require('vinyl-buffer');//配合sourcemap
+var autoprefixer = require("gulp-autoprefixer"); //浏览器前缀自动补齐 
+var minifyCss = require("gulp-clean-css");
 
-var watchedBrowserify = watchify(browserify({
-    basedir: '.',
-    debug: true,
-    entries: ['src/variable.js'],
-    cache: {},
-    packageCache: {}
-}).plugin(tsify));
+function swallowError(error) {
+    // If you want details of the error in the console
+  console.error(error.toString())
 
-gulp.task("copy-html", function () {
-    return gulp.src(paths.pages)
-        .pipe(gulp.dest("dist"));
-});
-
-function bundle() {
-    return watchedBrowserify
-        .transform('babelify', {
-            presets: ['es2015'],
-            extensions: ['.js','.es6']
-        })
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest("dist"));
+  this.emit('end')
 }
 
-gulp.task("default",gulp.series("copy-html",bundle));
-watchedBrowserify.on("update", bundle);
-watchedBrowserify.on("log", gutil.log);
+gulp.task('sass', function () {
+    gulp.src('src/scss/index.scss')
+        .pipe(buffer())
+        .pipe(sourcemaps.init({
+            loadMaps: true
+        }))
+        .pipe(sass())
+        .on('error', swallowError)
+        // 浏览器前缀补全    
+        .pipe(autoprefixer({
+            browsers: ["last 3 versions"],
+            cascade: false,
+            overrideBrowserslist: [
+                "Android 4.1",
+                "iOS 7.1",
+                "Chrome > 31",
+                "ff > 31",
+                "ie >= 8"
+            ],
+            grid: true
+        }))
+    
+        // css压缩
+        .pipe(minifyCss({
+            keepSpecialComments: "*"
+        }))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('dist/css'))
+        .pipe(reload({
+            stream: true
+        }));
+});
+gulp.task('babel', () =>
+    gulp.src('src/js/*.js')
+    .pipe(buffer())
+    .pipe(sourcemaps.init({
+        loadMaps: true
+    }))
+    .pipe(babel({
+        presets: ['env']
+    }))
+    .on('error', swallowError)
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('dist/js'))
+);
+
+// 监视 Sass 文件的改动，如果发生变更，运行 'sass' 任务，并且重载文件
+gulp.task('server', ['sass', 'babel'], function () {
+    //   browserSync({
+    //     server: {
+    //       baseDir: 'src'
+    //     }
+    //   });
+
+    gulp.watch('src/scss/*.scss', ['sass']);
+    gulp.watch('src/js/*.js', ['babel']);
+    //刷新页面
+    gulp.watch(['html/*.html', 'css/**/*.css', 'js/**/*.js'], {cwd: 'src'}, reload);
+});

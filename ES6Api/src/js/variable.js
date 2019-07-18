@@ -9,13 +9,15 @@ function Test1(arr) {
 	//let arr;报错
 	{
 		let arr;
+
 	}
 }
 Test1();
 
 function Test2() {
+	
 	const foo = {};
-    foo.name = '例子';
+    foo.name = '例子Aa';
     console.log('const....');
     document.getElementById('greeting').innerText = 'hhhhhh';
 	//foo = [];
