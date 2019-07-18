@@ -1,31 +1,25 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var base64 = require('gulp-base64');
 var browserSync = require('browser-sync');
 var babel = require('gulp-babel');
 var reload = browserSync.reload;
 //混淆
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps'); //生成的sourcemap文件可以方便调试压缩后的代码
-var buffer = require('vinyl-buffer'); //配合sourcemap
+var buffer = require('vinyl-buffer');//配合sourcemap
 var autoprefixer = require("gulp-autoprefixer"); //浏览器前缀自动补齐 
 var minifyCss = require("gulp-clean-css");
 //编译模块代码
-var webpack = require('webpack-stream');
-var named = require('vinyl-named');
-var webpackConfig = require("./webpack.config.js");
 
 function swallowError(error) {
     // If you want details of the error in the console
-    console.error(error.toString())
+  console.error(error.toString())
 
-    this.emit('end')
+  this.emit('end')
 }
-
 
 gulp.task('sass', function () {
     gulp.src('src/scss/*.scss')
-        .pipe(base64())
         .pipe(buffer())
         .pipe(sourcemaps.init({
             loadMaps: true
@@ -45,7 +39,7 @@ gulp.task('sass', function () {
             ],
             grid: true
         }))
-
+    
         // css压缩
         .pipe(minifyCss({
             keepSpecialComments: "*"
@@ -60,8 +54,6 @@ gulp.task('sass', function () {
 gulp.task('babel', () =>
     gulp.src('src/js/*.js')
     .pipe(buffer())
-    .pipe(named({}))
-    .pipe(webpack(webpackConfig))
     .pipe(sourcemaps.init({
         loadMaps: true
     }))
@@ -86,7 +78,5 @@ gulp.task('server', ['sass', 'babel'], function () {
     gulp.watch('src/scss/*.scss', ['sass']);
     gulp.watch('src/js/*.js', ['babel']);
     //刷新页面
-    gulp.watch(['html/*.html', 'css/**/*.css', 'js/**/*.js'], {
-        cwd: 'src'
-    }, reload);
+    gulp.watch(['html/*.html', 'css/**/*.css', 'js/**/*.js'], {cwd: 'src'}, reload);
 });

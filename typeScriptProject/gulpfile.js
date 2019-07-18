@@ -70,7 +70,7 @@ gulp.task("copy-html", function () {
 function bundle() {
     return watchedBrowserify
         .bundle()
-        .pipe(source('bundle.js'))
+        .pipe(source('bundle.min.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())

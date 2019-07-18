@@ -22,4 +22,26 @@ function Test2() {
     document.getElementById('greeting').innerText = 'hhhhhh';
 	//foo = [];
 }
+function add(a,b) {
+	return a + b;
+}
 Test2();
+let name = "我是很厉害的啦啦";
+// module.export = {
+// 	name: name,
+// 	getName: add
+// }
+class Student {
+	constructor(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	getInfo(){
+		return `${this.name} : ${this.age}`;
+	}
+}
+export {
+	add,
+	name,
+	Student
+}
