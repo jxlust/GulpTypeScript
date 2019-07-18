@@ -18,7 +18,7 @@ function swallowError(error) {
 }
 
 gulp.task('sass', function () {
-    gulp.src('src/scss/index.scss')
+    gulp.src('src/scss/*.scss')
         .pipe(buffer())
         .pipe(sourcemaps.init({
             loadMaps: true
