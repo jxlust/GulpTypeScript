@@ -1,20 +1,26 @@
-$primary-color: #3BC66F;
+$primary-color: #3bc66f;
 $primary-highlight: #32ba65;
 $gray-99: #999;
 $gray-33: #333;
 $gray-66: #666;
+$gray-22: #222222;
 $white: #ffffff;
 $gray-ee: #eeeeee;
 
 // hack
 $hack: '\9';
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 @mixin line-clamp($value: 3) {
 	word-break: break-all;
-	display: -webkit-box; 
-	-webkit-box-orient: vertical; 
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $value;
 	line-clamp: $value;
-	overflow: hidden; 
+	overflow: hidden;
 }
 @mixin flex-justify-between {
 	flex-wrap: wrap;

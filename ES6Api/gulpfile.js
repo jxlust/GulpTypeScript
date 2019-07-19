@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var rename=require('gulp-rename');
 var base64 = require('gulp-base64');
 var browserSync = require('browser-sync');
 var babel = require('gulp-babel');
@@ -25,6 +26,7 @@ function swallowError(error) {
 
 gulp.task('sass', function () {
     gulp.src('src/scss/*.scss')
+        .pipe(rename({suffix:'.min'}))
         .pipe(base64())
         .pipe(buffer())
         .pipe(sourcemaps.init({
@@ -61,7 +63,7 @@ gulp.task('babel', () =>
     gulp.src('src/js/*.js')
     .pipe(buffer())
     .pipe(named({}))
-    .pipe(webpack(webpackConfig))
+    //.pipe(webpack(webpackConfig))
     .pipe(sourcemaps.init({
         loadMaps: true
     }))
@@ -69,11 +71,10 @@ gulp.task('babel', () =>
         presets: ['env']
     }))
     .on('error', swallowError)
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('dist/js'))
 );
-
 
 // 监视 Sass 文件的改动，如果发生变更，运行 'sass' 任务，并且重载文件
 gulp.task('server', ['sass', 'babel'], function () {

@@ -1,2 +1,131 @@
-"use strict";var _createClass=function(){function r(e,n){for(var t=0;t<n.length;t++){var r=n[t];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(e,n,t){return n&&r(e.prototype,n),t&&r(e,t),e}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function _classCallCheck(e,n){if(!(e instanceof n))throw new TypeError("Cannot call a class as a function")}!function(t){var r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={i:e,l:!1,exports:{}};return t[e].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.m=t,o.c=r,o.d=function(e,n,t){o.o(e,n)||Object.defineProperty(e,n,{enumerable:!0,get:t})},o.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},o.t=function(n,e){if(1&e&&(n=o(n)),8&e)return n;if(4&e&&"object"==(void 0===n?"undefined":_typeof(n))&&n&&n.__esModule)return n;var t=Object.create(null);if(o.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:n}),2&e&&"string"!=typeof n)for(var r in n)o.d(t,r,function(e){return n[e]}.bind(null,r));return t},o.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(n,"a",n),n},o.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},o.p="",o(o.s=3)}([function(e,n,t){function r(e,n){return e+n}t.r(n),t.d(n,"add",function(){return r}),t.d(n,"name",function(){return o}),t.d(n,"Student",function(){return u}),function(n){n=[];for(var e=function(e){n[e]=function(){console.log("i:"+e)}},t=0;t<10;t++)e(t);n[6]()}(),console.log("const...."),document.getElementById("greeting").innerText="hhhhhh";var o="我是很厉害的啦啦",u=(_createClass(i,[{key:"getInfo",value:function(){return this.name+" : "+this.age}}]),i);function i(e,n){_classCallCheck(this,i),this.name=e,this.age=n}},,,function(e,n,t){e.exports=t(0)}]);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function Test1(arr) {
+	var arr = [];
+
+	var _loop = function _loop(i) {
+		arr[i] = function () {
+			console.log('i:' + i);
+		};
+	};
+
+	for (var i = 0; i < 10; i++) {
+		_loop(i);
+	}
+	arr[6]();
+	//let arr;报错
+	{
+		var _arr = void 0;
+	}
+}
+Test1();
+
+function Test2() {
+
+	var foo = {};
+	foo.name = '例子Aa';
+	console.log('const....');
+	document.getElementById('greeting').innerText = 'hhhhhh';
+	//foo = [];
+}
+function add(a, b) {
+	return a + b;
+}
+Test2();
+
+function Test3() {
+	'use strict';
+
+	var foo = Object.freeze({
+		name: {
+			a: 2
+		}
+	});
+	//严格模式出错
+	//foo.name = {};
+	//对象冻结类似浅拷贝，只冻结第一层
+	foo.name.a = 100;
+
+	//对于对象的彻底冻结
+	var constantize = function constantize(obj) {
+		Object.freeze(obj);
+		//方法一
+		// for (let value in obj) {
+		// 	if (typeof obj[value] === 'object') {
+		// 		constantize(obj[value]);
+		// 	}
+		// }
+		//方法二
+		Object.keys(obj).forEach(function (v, index) {
+			if (_typeof(obj[v]) === 'object') {
+				constantize(obj[v]);
+			}
+		});
+	};
+	//debugger;
+	constantize(foo);
+	//foo.name.a = 99;//报错
+	// setTimeout(() => {
+	// 	foo.name.a = 99;	
+	// }, 100);
+
+}
+
+Test3();
+
+//tips: 六种申明变量的方式 var function let const import class
+
+// 方法一
+function getGlobal2() {
+	return typeof window !== 'undefined' ? window : (typeof process === 'undefined' ? 'undefined' : _typeof(process)) === 'object' && typeof require === 'function' && (typeof global === 'undefined' ? 'undefined' : _typeof(global)) === 'object' ? global : this;
+}
+// 方法二
+var getGlobal = function getGlobal() {
+	if (typeof self !== 'undefined') {
+		return self;
+	}
+	if (typeof window !== 'undefined') {
+		return window;
+	}
+	if (typeof global !== 'undefined') {
+		return global;
+	}
+	throw new Error('unable to locate global object');
+};
+
+//导出模块
+var name = "我是很厉害的啦啦";
+// module.export = {
+// 	name: name,
+// 	getName: add
+// }
+
+var Student = function () {
+	function Student(name, age) {
+		_classCallCheck(this, Student);
+
+		this.name = name;
+		this.age = age;
+	}
+
+	_createClass(Student, [{
+		key: 'getInfo',
+		value: function getInfo() {
+			return this.name + ' : ' + this.age;
+		}
+	}]);
+
+	return Student;
+}();
+// export {
+// 	add,
+// 	name,
+// 	Student
+// }
 //# sourceMappingURL=variable.js.map
