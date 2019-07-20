@@ -15,14 +15,15 @@ function Test1(arr) {
 Test1();
 
 function Test2() {
-	
+
 	const foo = {};
-    foo.name = '例子Aa';
-    console.log('const....');
-    document.getElementById('greeting').innerText = 'hhhhhh';
+	foo.name = '例子Aa';
+	console.log('const....');
+	document.getElementById('greeting').innerText = 'hhhhhh';
 	//foo = [];
 }
-function add(a,b) {
+
+function add(a, b) {
 	return a + b;
 }
 Test2();
@@ -50,8 +51,8 @@ function Test3() {
 		// 	}
 		// }
 		//方法二
-		Object.keys(obj).forEach(function (v,index) {
-			if(typeof obj[v] === 'object'){
+		Object.keys(obj).forEach(function (v, index) {
+			if (typeof obj[v] === 'object') {
 				constantize(obj[v]);
 			}
 		});
@@ -62,7 +63,31 @@ function Test3() {
 	// setTimeout(() => {
 	// 	foo.name.a = 99;	
 	// }, 100);
-	
+
+
+}
+
+function test4() {
+	//对象的拷贝
+	let obj1 = {
+		a: {
+			b: 1
+		}
+	};
+	let obj2 = Object.assign({}, obj1);
+	//浅拷贝
+	let deepAssign = (obj) => {
+		let arr = Array.isArray(obj) ? [] : {};
+		Object.keys(obj).forEach((value) => {
+			if (typeof obj[value] === 'object') {
+				arr[value] = deepAssign(obj[value])
+			} else {
+				arr[value] = obj[value];
+			}
+		})
+		return arr;
+	}
+	let obj3 = deepAssign(obj1); //深拷贝
 
 }
 
@@ -72,20 +97,26 @@ Test3();
 
 // 方法一
 function getGlobal2() {
-return (typeof window !== 'undefined'
-   ? window
-   : (typeof process === 'object' &&
-      typeof require === 'function' &&
-      typeof global === 'object')
-     ? global
-     : this);
+	return (typeof window !== 'undefined' ?
+		window :
+		(typeof process === 'object' &&
+			typeof require === 'function' &&
+			typeof global === 'object') ?
+		global :
+		this);
 }
 // 方法二
 var getGlobal = function () {
-  if (typeof self !== 'undefined') { return self; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  throw new Error('unable to locate global object');
+	if (typeof self !== 'undefined') {
+		return self;
+	}
+	if (typeof window !== 'undefined') {
+		return window;
+	}
+	if (typeof global !== 'undefined') {
+		return global;
+	}
+	throw new Error('unable to locate global object');
 };
 
 
@@ -96,11 +127,11 @@ let name = "我是很厉害的啦啦";
 // 	getName: add
 // }
 class Student {
-	constructor(name,age){
+	constructor(name, age) {
 		this.name = name;
 		this.age = age;
 	}
-	getInfo(){
+	getInfo() {
 		return `${this.name} : ${this.age}`;
 	}
 }
