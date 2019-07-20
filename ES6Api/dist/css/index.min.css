@@ -1,2 +1,52 @@
-@charset "UTF-8";.box-b{width:500px;height:600px;background-color:#f8f8f8}.box-a{width:120px;height:100px;box-shadow:inset 0 9px 13px 0 red;background-color:#f0f}.www-footer{position:relative;z-index:9;margin-top:0;padding-top:46px;background-color:#222;min-width:1700px;background-image:url(/ES6Api/dist/img/a.png)}@media screen and (max-width:1700px){.friendship-link{min-width:1200px}.www-footer{min-width:1200px}.www-footer .footer-nav-list ul{margin-right:140px}}
+@charset "UTF-8";
+.box-b {
+  width: 500px;
+  height: 600px;
+  background-color: #f8f8f8; }
+
+.box-a {
+  width: 120px;
+  height: 100px;
+  box-shadow: inset 0px 9px 13px 0px #ff0000;
+  background-color: #ff00ff; }
+
+@font-face {
+  font-family: "STCAIYUN";
+  src: url("/ES6Api/dist/fonts/STCAIYUN.ttf");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: iconfont;
+  src: url(../fonts/iconfont.eot?v=3);
+  src: url(../fonts/iconfont.eot?v=3#iefix) format("embedded-opentype"), url(../fonts/iconfont.svg?v=3#iconfont) format("svg"), url(../fonts/iconfont.woff?v=3) format("woff"), url(../fonts/iconfont.ttf?v=3) format("truetype"); }
+
+.iconfont {
+  font-family: iconfont !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale; }
+
+/* footer通用 start */
+.www-footer {
+  position: relative;
+  z-index: 9;
+  margin-top: 0;
+  padding-top: 46px;
+  background-color: #222222;
+  min-width: 1700px;
+  background-image: url("/ES6Api/dist/img/a.png"); }
+
+/* footer的广告位end */
+/* 友情链接 end */
+/* 小于等于1200尺寸样式 */
+@media screen and (max-width: 1700px) {
+  .friendship-link {
+    min-width: 1200px; }
+  .www-footer {
+    min-width: 1200px; }
+    .www-footer .footer-nav-list ul {
+      margin-right: 140px; } }
+
 /*# sourceMappingURL=index.min.css.map */

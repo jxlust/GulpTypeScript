@@ -49,9 +49,9 @@ gulp.task('sass', function () {
         }))
 
         // css压缩
-        .pipe(minifyCss({
-            keepSpecialComments: "*"
-        }))
+        // .pipe(minifyCss({
+        //     keepSpecialComments: "*"
+        // }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist/css'))
         .pipe(reload({
@@ -71,7 +71,7 @@ gulp.task('babel', () =>
         presets: ['env']
     }))
     .on('error', swallowError)
-    //.pipe(uglify())
+    .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('dist/js'))
 );
@@ -84,8 +84,8 @@ gulp.task('server', ['sass', 'babel'], function () {
     //     }
     //   });
 
-    gulp.watch('src/scss/*.scss', ['sass']);
-    gulp.watch('src/js/*.js', ['babel']);
+    gulp.watch(['src/scss/*.scss','src/scss/**/*.scss'], ['sass']);
+    gulp.watch(['src/js/*.js','src/js/**/*.js'], ['babel']);
     //刷新页面
     gulp.watch(['html/*.html', 'css/**/*.css', 'js/**/*.js'], {
         cwd: 'src'

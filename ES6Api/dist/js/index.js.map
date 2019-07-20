@@ -1,1 +1,1 @@
-{"version":3,"sources":["index.js"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA","file":"index.js","sourcesContent":["//import * as a from './variable.js';\r\n//var variable = require('./variable.js');\r\n//let sum = add(1,3);\r\n//console.log('sum',sum);\r\n//console.log('name',a.name);"]}
+{"version":3,"sources":[],"names":[],"mappings":"","file":"index.js","sourcesContent":[]}
