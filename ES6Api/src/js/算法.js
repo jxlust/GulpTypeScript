@@ -40,10 +40,24 @@ for (let i = 0; i < 10; i++) {
     console.log('结果', triangle(i));
 }
 /**
+ * 尾递归优化 复杂度O(n)，上面的方法复杂度2的n次方
+ * @param {*} arr 
+ */
+function triangle2(num, results, lastResults) {
+    if (num <= 1) {
+        return results;
+    } else {
+        num--;
+        let newValue = results + lastResults;
+        return triangle2(num, newValue, results);
+    }
+}
+triangle2(3,1,1);
+/**
  * 二分排序插入排序的一种
  */
 function diverSort(arr) {
-    if(arr.length <= 1){
+    if (arr.length <= 1) {
         return arr;
     }
     let midIndex = Math.floor(arr.length / 2);
@@ -51,21 +65,21 @@ function diverSort(arr) {
     let leftArr = [];
     let rightArr = [];
     let midArr = [];
-    console.log('m',midValue);
+    console.log('m', midValue);
     for (let i = 0; i < arr.length; i++) {
-        if(arr[i] < midValue){
+        if (arr[i] < midValue) {
             //小于中间值的放左边
             leftArr.push(arr[i]);
-        }else if(arr[i] > midValue){
+        } else if (arr[i] > midValue) {
             //大于中间值的放右边
             rightArr.push(arr[i]);
-        }else{
+        } else {
             //等于
             midArr.push(midValue);
         }
     }
-    return (diverSort(leftArr)).concat(midArr,diverSort(rightArr));
+    return (diverSort(leftArr)).concat(midArr, diverSort(rightArr));
 }
 //test
-let diverArr = [23,22,90,22,123,45,99,43,44,34,33,54,43];
-console.log('diverArr',diverSort(diverArr));
+let diverArr = [23, 22, 90, 22, 123, 45, 99, 43, 44, 34, 33, 54, 43];
+console.log('diverArr', diverSort(diverArr));
