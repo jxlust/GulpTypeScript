@@ -17,6 +17,37 @@ console.log('1',getComplement(COLOR_GREEN) == COLOR_RED);
 let triangle = Symbol();
 const shapeType = {
   [triangle]: 111,
-  [triangle]: 22
+  [triangle]: 222,
+  triangle: 333,
+  myTest: Symbol()
+};
+shapeType[triangle] //222
+shapeType["triangle"] //333
+
+const Color_Type = {
+  Red: Symbol(),
+  Blue: Symbol(),
+  Green: Symbol()
+}
+function getColor(color) {
+  switch(color){
+    case Color_Type.Red:
+      return 1;
+      //break;
+    default:
+      throw new Error('not defined color')
+  }
+}
+//getColor(Color_Type.Red)
+
+
+// Reflect.ownKeys方法可以返回所有类型的键名，包括常规键名和 Symbol 键名。
+
+let obj = {
+  [Symbol('my_key')]: 1,
+  enum: 2,
+  nonEnum: 3
 };
 
+Reflect.ownKeys(obj)
+//  ["enum", "nonEnum", Symbol(my_key)]
