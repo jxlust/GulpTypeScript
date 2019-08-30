@@ -137,6 +137,3 @@ let wm = new WeakMap();
 const element = document.getElementById('example');
 wm.set(element, 'some information');
 wm.get(element) // "some information"
-
-
-

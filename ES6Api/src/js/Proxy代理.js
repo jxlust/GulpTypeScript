@@ -18,11 +18,18 @@ obj.name;
 var proxy = new Proxy({}, {
   get: function(target, property) {
     return 35;
+  },
+  set: function (target,propKey,value) {
+    console.log(1,target);
+    console.log(2,propKey);
+    console.log(3,value);
+    
   }
 });
 
 let obj = Object.create(proxy);//proxy对象是obj对象的原型
 obj.time // 35 拦截
+obj.time = 11;
 
 // 下面是 Proxy 支持的拦截操作一览，一共 13 种。
 // get(target, propKey, receiver)：拦截对象属性的读取，比如proxy.foo和proxy['foo']。
@@ -38,3 +45,4 @@ obj.time // 35 拦截
 // setPrototypeOf(target, proto)：拦截Object.setPrototypeOf(proxy, proto)，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。
 // apply(target, object, args)：拦截 Proxy 实例作为函数调用的操作，比如proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)。
 // construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作，比如new proxy(...args)。
+
