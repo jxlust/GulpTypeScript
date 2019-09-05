@@ -28,8 +28,6 @@ myObj.map(function (v, i, str) {
   return 0 + v;
 });
 console.log('map str', myObj.str);
-
-
 obj.map(function (index, i2) {
   console.log(index);
   console.log(i2);

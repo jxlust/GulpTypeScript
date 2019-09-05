@@ -87,6 +87,7 @@ function test4() {
 		})
 		return arr;
 	}
+	
 	let obj3 = deepAssign(obj1); //深拷贝
 
 }
