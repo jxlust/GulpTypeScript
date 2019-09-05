@@ -150,9 +150,9 @@
 
 // }
 // //8.6 遍历 Map 结构
-// const map = new Map();
-// map.set('first', 'hello');
-// map.set('second', 'world');
+const map = new Map();
+map.set('first', 'hello');
+map.set('second', 'world');
 
 // for (let [key, value] of map) {
 //     console.log(key + " is " + value);

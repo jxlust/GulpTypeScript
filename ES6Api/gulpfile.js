@@ -49,9 +49,9 @@ gulp.task('sass', function () {
         }))
 
         // css压缩
-        // .pipe(minifyCss({
-        //     keepSpecialComments: "*"
-        // }))
+        .pipe(minifyCss({
+            keepSpecialComments: "*"
+        }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist/css'))
         .pipe(reload({

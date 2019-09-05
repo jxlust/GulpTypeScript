@@ -22,6 +22,26 @@ $img-url: '/ES6Api/dist/img/';
 	background-color: #222222;
 	min-width: 1700px;
 	background-image: url('#{$img-url}a.png');
+	@include clearfix();
+}
+
+.one {
+	width:100px;height:100px;
+}
+.two {
+	/*继承的样式*/
+	@extend .one, .three;
+	@extend %four;
+	/*独立的样式*/
+	background:red;
+	border:5px solid #000;
+}
+.three {
+	padding:10px;
+}
+/* 占位，不会被编译 */
+%four{
+	background-color: #000;
 }
 /* footer的广告位end */
 
