@@ -16,10 +16,12 @@ const person = observable({
     name: 'mk',
     age: 19
 });
-
+let count = 0;
 function print() {
     console.log(`name: ${person.name} ---- age: ${person.age}`);
+    count++;
 }
 observe(print);//观察者
-
 person.name = 'zt';
+person.name = 'jx';
+console.log('count',count);
