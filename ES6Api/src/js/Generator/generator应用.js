@@ -76,6 +76,7 @@ function step3(value) {
 }
 
 
+
 // （3）部署 Iterator 接口 见遍历器接口iterator
 // 见文件Generator的forof.js
 function* entriesObj(obj) {
