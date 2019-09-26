@@ -8,8 +8,12 @@ let demo1 = {
   let obj1 = {
     name: 'lili'
   }
-  demo1.say.call(obj1, 'jxl');
   let fn = demo1.say.bind(obj1, 'pppp');
-  console.log(fn('666'));
+  fn('666');
+
+  //call apply
+  let d = demo1.say.call(obj1, 'jxl');
+  console.log(111,d);
+
   
   

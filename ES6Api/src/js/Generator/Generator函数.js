@@ -28,17 +28,3 @@ let pt = print();
 setTimeout(() => {
     pt.next();
 }, 1000);
-
-function* fA() {
-    for (let i = 0; true; i++) {
-        let r = yield i;
-        console.log('fa rrrr',r);
-        if (r) {
-            i = -1;
-        }
-    }
-}
-let fa = fA();
-console.log(fa.next());
-console.log(fa.next(true));
-console.log(fa.next());

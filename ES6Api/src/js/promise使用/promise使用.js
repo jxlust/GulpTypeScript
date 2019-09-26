@@ -50,7 +50,7 @@ function getData(v) {
         setTimeout(() => {
             if (v <= 4) {
                 resolve(v + '--');
-            }else{
+            } else {
                 reject('bye');
             }
         }, 1000);
