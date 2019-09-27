@@ -1,2 +1,0 @@
-"use strict";$(function(){$(".ask").click(function(){if(!objSite.isLogin())return openLogin(),!1;layer.open({type:2,skin:"layer-nobg",title:!1,resize:!1,area:["720px","593px"],content:[objSite.getZixueUrl("question/ask_pop"),"no"]})}),$(".course_ask").click(function(){if(!objSite.isLogin())return openLogin(),!1;var e=$('input[name="course_id"]').val();null==e&&(e=0),layer.open({type:2,skin:"layer-nobg",title:!1,resize:!1,area:["720px","643px"],content:[objSite.getZixueUrl("question/ask_pop?cid="+e),"no"]})})});
-//# sourceMappingURL=test.js.map

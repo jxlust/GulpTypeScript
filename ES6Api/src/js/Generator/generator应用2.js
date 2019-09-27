@@ -1,5 +1,5 @@
 //同步函数控制流封装
-
+//管理函数流
 let step1 = function () {
     console.log('job1---------step1');
 }
@@ -42,7 +42,8 @@ function* runJobs(jobs) {
 //执行
 let task = runJobs([job1,job2]);
 
-let res = task.next();
-while(!res.done){
-    res  = task.next();
-}
+// let res = task.next();
+// while(!res.done){
+//     res  = task.next();
+// }
+while(!task.next().done);

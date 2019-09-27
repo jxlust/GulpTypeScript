@@ -45,7 +45,7 @@ let ft = fTest(10);
 // console.log('next',ft.next('abc')); //就是把let y = yield 1 + x;替换成let y = 'abc';
 
 // console.log('throw', ft.next());
-// console.log('throw', ft.throw(new Error('none'))); //就是把let = yield 1+1 替换成 throw new Error('none'),然后自动执行一次next();
+// console.log('throw', ft.throw(new Error('none'))); //就是把let y = yield 1+1 替换成 throw new Error('none'),然后自动执行一次next();
 
 console.log('return',ft.next());
 console.log('return',ft.return(100)); //就是把let y = yield 1 + x;替换成 let y = return 100;

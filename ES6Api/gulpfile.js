@@ -60,7 +60,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('babel', () =>
-    gulp.src('src/js/*.js')
+    gulp.src('src/js/Test/*.js')
     .pipe(buffer())
     .pipe(named({}))
     //.pipe(webpack(webpackConfig))
@@ -71,7 +71,7 @@ gulp.task('babel', () =>
         presets: ['env']
     }))
     .on('error', swallowError)
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('dist/js'))
 );
