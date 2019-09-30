@@ -1,0 +1,22 @@
+html{
+    // font-size: 100px;
+}
+body {
+    color: red;
+    margin: 0;
+    padding: 0;
+}
+div {
+    height: 40px;
+    background: url("../../assets/images/logo2.png");
+    background-size: 100% 100%;
+}
+.box{
+    box-sizing: border-box;
+    font-size: 30px;
+    color: #ff0000;
+    background-color: #f8f8f8;
+    width: 750px;
+    height: 200px;
+    // border: 1px solid #ff00ff;
+}

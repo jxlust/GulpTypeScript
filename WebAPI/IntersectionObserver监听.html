@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <!-- <link rel="stylesheet" href="./css/index.css"> -->
+    <style>
+        * {
+            list-style: none;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .box li {
+            border: 1px solid #f0f0f0;
+            margin-bottom: 20px;
+            width: 500px;
+            height: 400px;
+            background: #f8f8f8;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>IntersectionObserver接口</h2>
+    <p>IntersectionObserver接口(从属于Intersection Observer API)
+        提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。祖先元素与视窗(viewport)被称为根(root)。</p>
+    <button id="stopOb">停止监听工作</button>
+    <div id="boxWrap">
+        <ul class="box">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+    </div>
+    <!-- <script src="./js/intersectionObserver.js"></script> -->
+    <script>
+        var options = {
+            root: null, //祖先元素Element对象，其边界盒将被视作视口,null为当前可视窗口
+            // rootMargin: "10px 10px 10px 10px",//一个在计算交叉值时添加至根的边界盒(bounding_box)中的一组偏移量，类型为字符串(string),默认值0px 0px 0px 0px
+            threshold: [1,1], //阈值,规定了一个监听目标与边界盒交叉区域的比例值，可以是一个具体的数值或是一组0.0到1.0之间的数组
+        }
+        var intersectionObserver = new IntersectionObserver(function (entries) {
+            console.log('entries', entries);
+            // If intersectionRatio is 0, the target is out of view
+            // and we do not need to do anything.
+            // for (var i in entries) {
+            //     if (entries[i].intersectionRatio < 1) return;
+            //     console.log(entries[i].target);
+            // }
+            entries.forEach(function (v) {
+                if(v.isIntersecting){
+                    //到交叉状态
+                    console.log('文字',v.target.innerText);
+                }
+            })
+        }, options);
+        //获取监听的dom对象
+        // var targetEls = document.querySelectorAll('.box>li');
+        var targetEls = [].slice.apply(document.querySelectorAll('.box>li'),[0,5]);
+        targetEls.forEach(function (v, index) {
+            //开始监听
+            intersectionObserver.observe(v);
+        });
+        
+        // for (var i in targetEls) {
+        //     var t = targetEls[i];
+        //     console.log(1,t);
+        //     console.log(2,typeof t,t instanceof Element);
+        //     intersectionObserver.observe(t);
+        // }
+
+        document.getElementById('stopOb').addEventListener('click', function (data) {
+            console.log("停止监听工作");
+            intersectionObserver.disconnect();
+        })
+    </script>
+</body>
+
+</html>

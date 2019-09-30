@@ -1,6 +1,8 @@
 // thunkify源码
+//采用的是回调函数实现
 function thunkify(fn) {
     return function () {
+
         var args = new Array(arguments.length);
         var ctx = this;
 
@@ -8,6 +10,7 @@ function thunkify(fn) {
             args[i] = arguments[i];
         }
 
+        // let args = [...arguments];
         return function (done) {
             var called;
 
