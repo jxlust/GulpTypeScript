@@ -36,6 +36,7 @@
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "postcss-plugin-px2rem": "^0.8.1",
+    "postcss-px-to-viewport": "^1.1.1",
     "postcss-url": "^7.3.2",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
@@ -52,7 +53,7 @@
   },
   "dependencies": {
     "raw-loader": "^1.0.0",
-    "webpack": "^4.29.6"
+    "babel-polyfill": "^6.26.0"
   },
   "browserslist": [
     "defaults",

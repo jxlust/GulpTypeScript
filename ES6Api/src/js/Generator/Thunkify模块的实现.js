@@ -13,7 +13,7 @@ function thunkify(fn) {
         // let args = [...arguments];
         return function (done) {
             var called;
-
+            
             args.push(function () {
                 if (called) return;
                 called = true;
