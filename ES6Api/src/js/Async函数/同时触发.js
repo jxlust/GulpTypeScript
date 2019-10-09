@@ -23,18 +23,27 @@ f1().then(data => console.log(data))
 
 let dbobj = {
     post: function (p) {
-        return new Promise( resolve => setTimeout(() => {
+        return new Promise( (resolve,reject) => setTimeout(() => {
             console.log('db',p);
-            resolve('1' + p.a);
+            if(p.a === 3){
+                reject('no');
+            }else{
+                resolve('1' + p.a);
+            }
+            
         }, 1000))
     }
 }
 async function dbFuc(db) {
     let obj = [{a:1},{a:2},{a:3}];
     let promises = obj.map((o) => db.post(o));
+    try {
+        let r =  await Promise.all(promises);
+        console.log('r:',r);
+        return r;    
+    } catch (error) {
+        console.log('e:',error);
+    }
     
-    let r =  await Promise.all(promises);
-    console.log(r);
-    return r;
 }
 dbFuc(dbobj);
