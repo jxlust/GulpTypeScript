@@ -170,3 +170,8 @@ map.set('second', 'world');
 // //8.7 输入模块的指定方法
 // //import {a} from '';
 // //const {a,b} = require('');
+
+
+// good
+function divide(a, b, { option = false } = {}) {
+}

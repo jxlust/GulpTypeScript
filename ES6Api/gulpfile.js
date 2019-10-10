@@ -60,7 +60,8 @@ gulp.task('sass', function () {
 });
 
 gulp.task('babel', () =>
-    gulp.src('src/js/Test/*.js')
+    // gulp.src('src/js/Test/*.js')
+    gulp.src('src/js/Module/*.js')
     .pipe(buffer())
     .pipe(named({}))
     //.pipe(webpack(webpackConfig))

@@ -37,4 +37,5 @@ class B extends A {
         super.toSay();
     }
 }
-new B();
+let a = new B();
+console.log(111,a instanceof A);
