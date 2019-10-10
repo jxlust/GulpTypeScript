@@ -11,7 +11,7 @@ class Human {
 class Man extends Human {
    
     constructor() {
-
+        super();
     }
     static showName() {
         console.log(super.showName() + ' man');
@@ -19,4 +19,5 @@ class Man extends Human {
     }
 }
 Man.showName();
-// let m1 = new Man();
+let m1 = new Man();
+console.log(1,Object.getPrototypeOf(m1));

@@ -26,6 +26,15 @@ GetData('读取').then(function (data) {
 })
 
 // 由于async函数返回的是 Promise 对象，可以作为await命令的参数
+// await 正常情况下，await命令后面是一个 Promise 对象，返回该对象的结果。如果不是 Promise 对象，就直接返回对应的值。
+async function getFun() {
+    await new Promise( resolve => setTimeout(resolve,1000));
+}
+async function printGetFun() {
+    await getFun();
+    console.log('hhhh');
+}
+
 async function getNames(str) {
    let v = await new Promise(function (resolve, reject) {
         setTimeout(() => {
