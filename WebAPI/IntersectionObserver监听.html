@@ -73,6 +73,7 @@
                     console.log('文字', v.target.innerText);
                     var thisId = parseInt(v.target.getAttribute('data-id'));
                     console.log(999, thisId);
+                    // if(!~myIds.indexOf(thisId))
                     if (myIds.indexOf(thisId) === -1) {
                         //不存在
                         myIds.push(thisId);
