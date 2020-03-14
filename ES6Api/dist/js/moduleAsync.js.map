@@ -1,1 +1,0 @@
-{"version":3,"sources":["moduleAsync.js"],"names":["name","setTimeout"],"mappings":";;;;;AAAO,IAAIA,sBAAO,KAAX;AACPC,WAAW;AAAA,iBADAD,IACA,GAAMA,OAAO,KAAb;AAAA,CAAX,EAA+B,IAA/B","file":"moduleAsync.js","sourcesContent":["export var name = 'foo';\r\nsetTimeout(() => name = 'bar', 1000);"]}
